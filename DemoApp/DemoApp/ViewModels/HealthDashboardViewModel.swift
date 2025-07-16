@@ -1,6 +1,6 @@
 import Foundation
 import Combine
-import HealthMetricKits
+import HealthMetricsKit
 
 @MainActor
 public final class HealthDashboardViewModel: ObservableObject {

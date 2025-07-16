@@ -1,5 +1,5 @@
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Use case for requesting health data permissions
 /// Encapsulates the business logic for permission management and validation

@@ -1,5 +1,5 @@
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Use case for validating health metrics data
 /// Encapsulates business rules for health data validation and quality checks

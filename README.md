@@ -1,10 +1,10 @@
-# HealthMetricKits
+# HealthMetricsKit
 
 A comprehensive Swift package for accessing HealthKit data with a clean architecture demo application.
 
 ## 📋 Overview
 
-HealthMetricKits provides a robust, protocol-oriented solution for querying key health metrics from HealthKit. The package includes both live HealthKit integration and mock data providers, making it perfect for development, testing, and production use.
+HealthMetricsKit provides a robust, protocol-oriented solution for querying key health metrics from HealthKit. The package includes both live HealthKit integration and mock data providers, making it perfect for development, testing, and production use.
 
 ### Key Features
 
@@ -23,18 +23,18 @@ HealthMetricKits provides a robust, protocol-oriented solution for querying key 
 
 ### Swift Package Manager
 
-Add HealthMetricKits to your project:
+Add HealthMetricsKit to your project:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/HealthMetricKits.git", from: "1.0.0")
+    .package(url: "https://github.com/yourusername/HealthMetricsKit.git", from: "1.0.0")
 ]
 ```
 
 ### Basic Usage
 
 ```swift
-import HealthMetricKits
+import HealthMetricsKit
 
 // Use mock data for testing
 let mockProvider = MockHealthDataProvider()
@@ -60,11 +60,11 @@ do {
 
 ### Package Structure
 
-The HealthMetricKits package is organized into logical modules for better maintainability:
+The HealthMetricsKit package is organized into logical modules for better maintainability:
 
 ```
-Sources/HealthMetricKits/
-├── HealthMetricKits.swift           # Main module entry point
+Sources/HealthMetricsKit/
+├── HealthMetricsKit.swift           # Main module entry point
 ├── Protocols/
 │   └── HealthDataProvider.swift    # Core protocol interface
 ├── Models/

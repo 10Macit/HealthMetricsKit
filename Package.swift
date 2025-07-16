@@ -4,24 +4,24 @@
 import PackageDescription
 
 let package = Package(
-    name: "HealthMetricKits",
+    name: "HealthMetricsKit",
     platforms: [
         .iOS(.v16),
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "HealthMetricKits",
-            targets: ["HealthMetricKits"]),
+            name: "HealthMetricsKit",
+            targets: ["HealthMetricsKit"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "HealthMetricKits"),
+            name: "HealthMetricsKit"),
         .testTarget(
-            name: "HealthMetricKitsTests",
-            dependencies: ["HealthMetricKits"]
+            name: "HealthMetricsKitTests",
+            dependencies: ["HealthMetricsKit"]
         ),
     ]
 )

@@ -1,5 +1,5 @@
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Use case for fetching health metrics for a specific date
 /// Encapsulates the business logic for retrieving and validating health data

@@ -18,7 +18,7 @@ struct AboutView: View {
                         .font(.system(size: 64))
                         .foregroundColor(.red)
                     
-                    Text("HealthMetricKits")
+                    Text("HealthMetricsKit")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     
@@ -38,7 +38,7 @@ struct AboutView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
                     
-                    Text("This is a demonstration application showcasing the HealthMetricKits Swift package. The app provides a comprehensive view of your health metrics including steps, heart rate, heart rate variability, VO₂ Max, and sleep data.")
+                    Text("This is a demonstration application showcasing the HealthMetricsKit Swift package. The app provides a comprehensive view of your health metrics including steps, heart rate, heart rate variability, VO₂ Max, and sleep data.")
                         .font(.body)
                         .foregroundColor(.primary)
                     

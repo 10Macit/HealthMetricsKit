@@ -1,7 +1,7 @@
 import XCTest
 import SwiftUI
 @testable import DemoApp
-@testable import HealthMetricKits
+@testable import HealthMetricsKit
 
 @MainActor
 final class DependencyInjectionTests: XCTestCase {

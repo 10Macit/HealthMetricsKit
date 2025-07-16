@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import DemoApp
-@testable import HealthMetricKits
+@testable import HealthMetricsKit
 
 final class DemoAppTests: XCTestCase {
     

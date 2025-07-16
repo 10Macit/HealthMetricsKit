@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Navigation destinations in the app
 enum NavigationDestination: Hashable {

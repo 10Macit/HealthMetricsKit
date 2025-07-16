@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 final class DefaultHealthMetricsRepository: HealthMetricsRepository {
     private let healthDataProvider: HealthDataProvider

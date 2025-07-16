@@ -1,7 +1,7 @@
 import XCTest
 import Combine
 @testable import DemoApp
-@testable import HealthMetricKits
+@testable import HealthMetricsKit
 
 @MainActor
 final class HealthDashboardViewModelTests: XCTestCase {

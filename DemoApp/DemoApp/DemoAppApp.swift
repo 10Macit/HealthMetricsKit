@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import HealthMetricKits
+import HealthMetricsKit
 
 @main
 struct DemoAppApp: App {

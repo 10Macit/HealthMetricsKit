@@ -1,5 +1,5 @@
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Dependency Injection Container for managing app dependencies
 /// Follows the Service Locator pattern for dependency management

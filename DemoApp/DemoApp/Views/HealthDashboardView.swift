@@ -1,6 +1,6 @@
 import SwiftUI
 import Combine
-import HealthMetricKits
+import HealthMetricsKit
 
 /// Testable Health Dashboard View that accepts an injected ViewModel
 /// This view is designed for dependency injection and testing

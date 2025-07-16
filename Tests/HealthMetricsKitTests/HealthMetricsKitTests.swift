@@ -1,7 +1,7 @@
 import XCTest
-@testable import HealthMetricKits
+@testable import HealthMetricsKit
 
-final class HealthMetricKitsTests: XCTestCase {
+final class HealthMetricsKitTests: XCTestCase {
     
     // MARK: - HealthMetrics Tests
     

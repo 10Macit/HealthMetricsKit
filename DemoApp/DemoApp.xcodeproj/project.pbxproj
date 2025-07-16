@@ -7,14 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		738689F52E27F46100C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 738689F42E27F46100C76201 /* HealthMetricKits */; };
-		73868A042E27F49300C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A032E27F49300C76201 /* HealthMetricKits */; };
-		73868A192E27FF7400C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A182E27FF7400C76201 /* HealthMetricKits */; };
-		73868A332E280CE400C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A322E280CE400C76201 /* HealthMetricKits */; };
-		73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A352E2811A500C76201 /* HealthMetricKits */; };
-		73868A392E2814D600C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A382E2814D600C76201 /* HealthMetricKits */; };
-		73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868B052E283D0900C76201 /* HealthMetricKits */; };
-		73868B542E285C6400C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868B532E285C6400C76201 /* HealthMetricKits */; };
+		73868C492E28667B00C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868C482E28667B00C76201 /* HealthMetricsKit */; };
+		73868C4C2E2866E700C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868C4B2E2866E700C76201 /* HealthMetricsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,14 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				738689F52E27F46100C76201 /* HealthMetricKits in Frameworks */,
-				73868A392E2814D600C76201 /* HealthMetricKits in Frameworks */,
-				73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */,
-				73868A332E280CE400C76201 /* HealthMetricKits in Frameworks */,
-				73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */,
-				73868B542E285C6400C76201 /* HealthMetricKits in Frameworks */,
-				73868A192E27FF7400C76201 /* HealthMetricKits in Frameworks */,
-				73868A042E27F49300C76201 /* HealthMetricKits in Frameworks */,
+				73868C492E28667B00C76201 /* HealthMetricsKit in Frameworks */,
+				73868C4C2E2866E700C76201 /* HealthMetricsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +87,7 @@
 				738689CB2E27F43400C76201 /* DemoApp */,
 				738689D92E27F43500C76201 /* DemoAppTests */,
 				738689E32E27F43500C76201 /* DemoAppUITests */,
+				73868C442E28664600C76201 /* Frameworks */,
 				738689CA2E27F43400C76201 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +100,13 @@
 				738689E02E27F43500C76201 /* DemoAppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		73868C442E28664600C76201 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,14 +129,11 @@
 			);
 			name = DemoApp;
 			packageProductDependencies = (
-				738689F42E27F46100C76201 /* HealthMetricKits */,
 				73868A032E27F49300C76201 /* HealthMetricKits */,
 				73868A182E27FF7400C76201 /* HealthMetricKits */,
-				73868A322E280CE400C76201 /* HealthMetricKits */,
-				73868A352E2811A500C76201 /* HealthMetricKits */,
-				73868A382E2814D600C76201 /* HealthMetricKits */,
-				73868B052E283D0900C76201 /* HealthMetricKits */,
 				73868B532E285C6400C76201 /* HealthMetricKits */,
+				73868C482E28667B00C76201 /* HealthMetricsKit */,
+				73868C4B2E2866E700C76201 /* HealthMetricsKit */,
 			);
 			productName = DemoApp;
 			productReference = 738689C92E27F43400C76201 /* DemoApp.app */;
@@ -225,7 +218,7 @@
 			mainGroup = 738689C02E27F43400C76201;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				73868B522E285C6400C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
+				73868C4A2E2866E700C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 738689CA2E27F43400C76201 /* Products */;
@@ -598,17 +591,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		73868B522E285C6400C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
+		73868C4A2E2866E700C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../HealthMetricKits;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		738689F42E27F46100C76201 /* HealthMetricKits */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HealthMetricKits;
-		};
 		73868A032E27F49300C76201 /* HealthMetricKits */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricKits;
@@ -617,25 +606,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricKits;
 		};
-		73868A322E280CE400C76201 /* HealthMetricKits */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HealthMetricKits;
-		};
-		73868A352E2811A500C76201 /* HealthMetricKits */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HealthMetricKits;
-		};
-		73868A382E2814D600C76201 /* HealthMetricKits */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HealthMetricKits;
-		};
-		73868B052E283D0900C76201 /* HealthMetricKits */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HealthMetricKits;
-		};
 		73868B532E285C6400C76201 /* HealthMetricKits */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricKits;
+		};
+		73868C482E28667B00C76201 /* HealthMetricsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthMetricsKit;
+		};
+		73868C4B2E2866E700C76201 /* HealthMetricsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthMetricsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

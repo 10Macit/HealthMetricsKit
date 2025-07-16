@@ -1,5 +1,5 @@
 import Foundation
-import HealthMetricKits
+import HealthMetricsKit
 
 public protocol HealthMetricsRepository {
     func requestPermissions() async throws
