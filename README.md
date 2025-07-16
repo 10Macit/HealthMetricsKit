@@ -144,7 +144,6 @@ DemoApp/
 ├── Views/
 │   ├── HealthDashboardView.swift         # Main dashboard view with DI
 │   ├── MetricsListView.swift             # List of all metrics
-│   ├── MetricDetailView.swift            # Detailed metric view
 │   ├── SettingsView.swift                # App settings
 │   ├── AboutView.swift                   # App information
 │   └── Components/                       # Reusable UI components
@@ -202,9 +201,6 @@ class NavigationCoordinator: ObservableObject {
         navigationPath.append(destination)
     }
     
-    func navigateToMetricDetail(_ metricType: MetricType) {
-        navigate(to: .metricDetail(metricType))
-    }
 }
 ```
 
@@ -255,7 +251,7 @@ class NavigationCoordinator: ObservableObject {
 - Comprehensive `NavigationCoordinator` with centralized state management
 - TabView-based architecture with Dashboard, Metrics, and Settings tabs
 - Type-safe navigation using `NavigationDestination` enum
-- New views: `MetricsListView`, `MetricDetailView`, `SettingsView`, `AboutView`
+- New views: `MetricsListView`, `SettingsView`, `AboutView`
 - Deep linking support for specific metrics and settings
 - Proper navigation stack management with back/root navigation
 - Environment-based navigation coordinator injection
