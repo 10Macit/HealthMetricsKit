@@ -40,7 +40,7 @@ struct HealthDashboardView: View {
                 .padding()
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("Health Dashboard")
+            .navigationTitle("Dashboard")
             .navigationBarTitleDisplayMode(.large)
             .refreshable {
                 await viewModel.fetchHealthMetrics(for: viewModel.selectedDate)
@@ -64,7 +64,7 @@ struct HealthDashboardView: View {
         if selectedDay == today {
             return "Today's Metrics"
         } else {
-            return "Metrics for \(viewModel.formattedDate)"
+            return "Metrics for:"
         }
     }
     
@@ -81,10 +81,7 @@ struct HealthDashboardView: View {
                     .labelsHidden()
                     .accentColor(.blue)
             }
-            
-            Text(viewModel.formattedDate)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+
         }
         .padding(.horizontal, 4)
     }
