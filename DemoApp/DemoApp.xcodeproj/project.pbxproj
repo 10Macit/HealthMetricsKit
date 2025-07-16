@@ -13,6 +13,7 @@
 		73868A332E280CE400C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A322E280CE400C76201 /* HealthMetricKits */; };
 		73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A352E2811A500C76201 /* HealthMetricKits */; };
 		73868A392E2814D600C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A382E2814D600C76201 /* HealthMetricKits */; };
+		73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868B052E283D0900C76201 /* HealthMetricKits */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 			files = (
 				738689F52E27F46100C76201 /* HealthMetricKits in Frameworks */,
 				73868A392E2814D600C76201 /* HealthMetricKits in Frameworks */,
+				73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */,
 				73868A332E280CE400C76201 /* HealthMetricKits in Frameworks */,
 				73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */,
 				73868A192E27FF7400C76201 /* HealthMetricKits in Frameworks */,
@@ -133,6 +135,7 @@
 				73868A322E280CE400C76201 /* HealthMetricKits */,
 				73868A352E2811A500C76201 /* HealthMetricKits */,
 				73868A382E2814D600C76201 /* HealthMetricKits */,
+				73868B052E283D0900C76201 /* HealthMetricKits */,
 			);
 			productName = DemoApp;
 			productReference = 738689C92E27F43400C76201 /* DemoApp.app */;
@@ -217,7 +220,7 @@
 			mainGroup = 738689C02E27F43400C76201;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				73868A372E2814D600C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
+				73868B042E283D0900C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 738689CA2E27F43400C76201 /* Products */;
@@ -419,11 +422,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DemoApp/DemoApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N9KJ87372Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Share Health Data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Update Health Data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,11 +453,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DemoApp/DemoApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N9KJ87372Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Share Health Data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Update Health Data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -584,7 +593,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		73868A372E2814D600C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
+		73868B042E283D0900C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../HealthMetricKits;
 		};
@@ -612,6 +621,10 @@
 			productName = HealthMetricKits;
 		};
 		73868A382E2814D600C76201 /* HealthMetricKits */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthMetricKits;
+		};
+		73868B052E283D0900C76201 /* HealthMetricKits */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricKits;
 		};
