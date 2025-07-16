@@ -14,6 +14,7 @@
 		73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A352E2811A500C76201 /* HealthMetricKits */; };
 		73868A392E2814D600C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868A382E2814D600C76201 /* HealthMetricKits */; };
 		73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868B052E283D0900C76201 /* HealthMetricKits */; };
+		73868B542E285C6400C76201 /* HealthMetricKits in Frameworks */ = {isa = PBXBuildFile; productRef = 73868B532E285C6400C76201 /* HealthMetricKits */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 				73868B062E283D0900C76201 /* HealthMetricKits in Frameworks */,
 				73868A332E280CE400C76201 /* HealthMetricKits in Frameworks */,
 				73868A362E2811A500C76201 /* HealthMetricKits in Frameworks */,
+				73868B542E285C6400C76201 /* HealthMetricKits in Frameworks */,
 				73868A192E27FF7400C76201 /* HealthMetricKits in Frameworks */,
 				73868A042E27F49300C76201 /* HealthMetricKits in Frameworks */,
 			);
@@ -136,6 +138,7 @@
 				73868A352E2811A500C76201 /* HealthMetricKits */,
 				73868A382E2814D600C76201 /* HealthMetricKits */,
 				73868B052E283D0900C76201 /* HealthMetricKits */,
+				73868B532E285C6400C76201 /* HealthMetricKits */,
 			);
 			productName = DemoApp;
 			productReference = 738689C92E27F43400C76201 /* DemoApp.app */;
@@ -220,7 +223,7 @@
 			mainGroup = 738689C02E27F43400C76201;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				73868B042E283D0900C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
+				73868B522E285C6400C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 738689CA2E27F43400C76201 /* Products */;
@@ -593,7 +596,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		73868B042E283D0900C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
+		73868B522E285C6400C76201 /* XCLocalSwiftPackageReference "../../HealthMetricKits" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../HealthMetricKits;
 		};
@@ -625,6 +628,10 @@
 			productName = HealthMetricKits;
 		};
 		73868B052E283D0900C76201 /* HealthMetricKits */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthMetricKits;
+		};
+		73868B532E285C6400C76201 /* HealthMetricKits */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricKits;
 		};

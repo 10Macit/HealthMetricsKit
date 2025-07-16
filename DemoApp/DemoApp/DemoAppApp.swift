@@ -30,6 +30,11 @@ struct DemoAppApp: App {
         switch DIContainer.Configuration.current {
         case .development:
             viewModelFactory.configureForTesting()
+        case .staging:
+            viewModelFactory.configureForStaging()
+            Task {
+                await requestHealthKitPermissions()
+            }
         case .production:
             viewModelFactory.configureForProduction()
             Task {

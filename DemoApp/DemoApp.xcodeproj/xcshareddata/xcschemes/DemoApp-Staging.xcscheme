@@ -52,7 +52,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "APP_CONFIGURATION"
-            value = "Production"
+            value = "Staging"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -76,7 +76,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "APP_CONFIGURATION"
-            value = "Production"
+            value = "Staging"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

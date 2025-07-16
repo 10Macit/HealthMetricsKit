@@ -109,8 +109,9 @@ public struct HealthMetrics {
 
 #### Implementations
 
-1. **HealthKitDataProvider**: Live HealthKit integration with proper permission handling
+1. **HealthKitDataProvider**: Live HealthKit integration with proper permission handling and resilient data fetching
 2. **MockHealthDataProvider**: Deterministic mock data based on date seeds with improved data generation
+3. **MockDataWithInjectionProvider**: HealthKit injection for realistic testing - writes controlled mock data to HealthKit and reads it back using real HealthKit queries
 
 #### Utilities
 
@@ -226,6 +227,46 @@ class NavigationCoordinator: ObservableObject {
 
 ## 🚀 Recent Improvements
 
+### Version 3.0 - Scheme-Based Configuration & Enhanced Testing
+
+**🎯 Three-Environment Architecture**
+- **Development**: Pure mock data with `MockHealthDataProvider` - no HealthKit dependencies
+- **Staging**: Realistic testing with `MockDataWithInjectionProvider` - injects controlled data into HealthKit for end-to-end testing
+- **Production**: Real user data with `HealthKitDataProvider` - live HealthKit integration
+
+**🔧 Scheme-Based Configuration**
+- Automatic environment detection via `APP_CONFIGURATION` environment variables
+- `DemoApp-Development.xcscheme`: Uses MockHealthDataProvider for rapid development
+- `DemoApp-Staging.xcscheme`: Uses MockDataWithInjectionProvider for realistic HealthKit testing
+- `DemoApp-Production.xcscheme`: Uses HealthKitDataProvider for production deployment
+- Centralized configuration in `DIContainer` with automatic provider selection
+
+**🧪 MockDataWithInjectionProvider - Revolutionary Testing**
+- **Real HealthKit Integration**: Writes mock data to actual HealthKit store and reads it back
+- **7 Days of Realistic Data**: Automatically injects varied, realistic health metrics for a full week
+- **Controlled Testing Environment**: Predictable data for consistent UI testing and demos
+- **Graceful Error Handling**: Robust clearing and injection with detailed console logging
+- **One-Time Injection**: Smart caching prevents repeated data injection per app launch
+- **Production-Like Flow**: Tests complete HealthKit permission and data flow
+
+**🔄 Automatic UI Refresh System**
+- **NotificationCenter Integration**: Automatic UI refresh after HealthKit permissions are granted
+- **Real-Time Updates**: No manual refresh needed when permissions change
+- **Seamless UX**: Dashboard immediately shows data after permission grant
+- **Decoupled Architecture**: Clean separation between permission flow and UI updates
+
+**💪 Resilient Data Fetching**
+- **Partial Data Support**: HealthKitDataProvider now handles missing metrics gracefully
+- **Graceful Degradation**: Shows available data even when some metrics are unavailable
+- **Error Isolation**: Individual metric failures don't prevent other data from displaying
+- **User-Friendly Experience**: No more "all or nothing" data fetching
+
+**🏗️ Enhanced Dependency Injection**
+- **Three-Tier Configuration**: Automatic provider selection based on app configuration
+- **Environment Variables**: Dynamic configuration without code changes
+- **Testing Support**: Easy switching between environments for different testing scenarios
+- **Production Ready**: Seamless deployment with proper HealthKit integration
+
 ### Version 2.0 - Enhanced Architecture
 
 **🏗️ Advanced Dependency Injection**
@@ -320,40 +361,115 @@ The demo app includes comprehensive tests for:
 ⌘ + U
 
 # Run specific test classes
-xcodebuild -project DemoApp.xcodeproj -scheme DemoApp -destination 'platform=iOS Simulator,name=iPhone 16' test -only-testing HealthDashboardViewModelTests
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Development -destination 'platform=iOS Simulator,name=iPhone 16' test -only-testing HealthDashboardViewModelTests
+```
+
+### Environment-Specific Testing
+
+Test different configurations using the scheme-based system:
+
+```bash
+# Test with Development environment (MockHealthDataProvider)
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Development -destination 'platform=iOS Simulator,name=iPhone 16' build
+
+# Test with Staging environment (MockDataWithInjectionProvider)
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Staging -destination 'platform=iOS Simulator,name=iPhone 16' build
+
+# Test with Production environment (HealthKitDataProvider)
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Production -destination 'platform=iOS Simulator,name=iPhone 16' build
+```
+
+**Console Output for Staging Environment:**
+```
+🔄 MockDataWithInjectionProvider: Starting data injection...
+ℹ️ No existing HKQuantityTypeIdentifierStepCount data to clear (this is normal)
+🧹 Cleared existing HealthKit samples
+📊 Day 1: Steps: 12000, VO2Max: 42.0, RHR: 65.0, HRV: 45.0, Sleep: 7.5h
+📊 Day 2: Steps: 11200, VO2Max: 42.3, RHR: 64.5, HRV: 46.5, Sleep: 8.0h
+...
+✅ Injected 7 days of mock data to HealthKit
+✅ Health data permissions granted successfully
 ```
 
 ### Test Coverage
 
 - ✅ **HealthMetrics model initialization and extensions**
 - ✅ **MockHealthDataProvider deterministic behavior**
-- ✅ **HealthKitDataProvider permission handling**
+- ✅ **HealthKitDataProvider permission handling and resilient data fetching**
+- ✅ **MockDataWithInjectionProvider HealthKit data injection and clearing**
 - ✅ **Use Cases business logic validation**
-- ✅ **Dependency injection system**
+- ✅ **Dependency injection system with three-environment support**
 - ✅ **ViewModel state management with async operations**
 - ✅ **Repository pattern implementation**
 - ✅ **NavigationCoordinator state management and routing**
 - ✅ **MetricType properties and visual consistency**
 - ✅ **Navigation destination handling and tab switching**
-- ✅ **Error cases and edge conditions**
+- ✅ **Error cases and edge conditions with graceful degradation**
 - ✅ **Date selection and validation logic**
 - ✅ **Metrics completion percentage calculations**
 - ✅ **Health validation warnings and insights**
+- ✅ **Scheme-based configuration and environment detection**
+- ✅ **Automatic UI refresh after permission grant**
+- ✅ **Notification system integration**
 
 ## 🔧 Configuration
 
+### Environment Setup
+
+The app supports three distinct environments controlled by Xcode schemes:
+
+#### Development Environment
+- **Purpose**: Rapid development with no HealthKit dependencies
+- **Data Provider**: `MockHealthDataProvider`
+- **Usage**: Day-to-day development, unit testing, and demos
+- **Scheme**: `DemoApp-Development`
+- **Environment Variable**: `APP_CONFIGURATION=Development`
+
+#### Staging Environment
+- **Purpose**: Realistic HealthKit testing with controlled data
+- **Data Provider**: `MockDataWithInjectionProvider`
+- **Usage**: End-to-end testing, QA validation, and realistic demos
+- **Scheme**: `DemoApp-Staging`
+- **Environment Variable**: `APP_CONFIGURATION=Staging`
+- **Special Features**: Automatically injects 7 days of realistic mock data into HealthKit
+
+#### Production Environment
+- **Purpose**: Live app with real user health data
+- **Data Provider**: `HealthKitDataProvider`
+- **Usage**: App Store releases and production deployment
+- **Scheme**: `DemoApp-Production`
+- **Environment Variable**: `APP_CONFIGURATION=Production`
+
 ### HealthKit Permissions
 
-To use the HealthKitDataProvider in your app, add the following to your `Info.plist`:
+To use the HealthKitDataProvider or MockDataWithInjectionProvider in your app, add the following to your `Info.plist`:
 
 ```xml
 <key>NSHealthShareUsageDescription</key>
 <string>This app needs access to your health data to display your daily metrics.</string>
+<key>NSHealthUpdateUsageDescription</key>
+<string>This app needs to write test data to HealthKit for realistic testing scenarios.</string>
 ```
 
 ### Required HealthKit Capabilities
 
 Ensure your app target has HealthKit capability enabled in Xcode project settings.
+
+### Automatic Configuration
+
+The app automatically detects the current environment and configures dependencies accordingly:
+
+```swift
+// DIContainer automatically selects the appropriate provider
+switch Configuration.current {
+case .development:
+    provider = MockHealthDataProvider()        // Pure mock data
+case .staging:
+    provider = MockDataWithInjectionProvider() // HealthKit injection
+case .production:
+    provider = HealthKitDataProvider()         // Real user data
+}
+```
 
 ## 🎯 Design Decisions
 
@@ -363,11 +479,24 @@ Ensure your app target has HealthKit capability enabled in Xcode project setting
 - **Flexibility**: Swap implementations without changing client code
 - **Separation of Concerns**: Clear boundaries between data access and business logic
 
-### Why Mock Data Provider?
+### Why Three Data Providers?
 
+**MockHealthDataProvider (Development)**
 - **Consistent Development**: Same data across team members and CI/CD
 - **Demo Ready**: Perfect for app store screenshots and demos
 - **Offline Testing**: No need for real health data during development
+- **Fast Iteration**: No HealthKit dependencies or permission prompts
+
+**MockDataWithInjectionProvider (Staging)**
+- **Realistic Testing**: Tests complete HealthKit integration flow with controlled data
+- **End-to-End Validation**: Validates permission flow, data writing, and reading
+- **Predictable Results**: Same test data every time for consistent testing
+- **Production-Like**: Uses real HealthKit APIs while maintaining data control
+
+**HealthKitDataProvider (Production)**
+- **Real User Data**: Actual health metrics from user's HealthKit store
+- **Live Integration**: Full HealthKit feature set and real-world data patterns
+- **User Privacy**: Respects user permissions and data boundaries
 
 ### Why MVVM + Use Cases + Repository Pattern?
 
@@ -405,6 +534,33 @@ Ensure your app target has HealthKit capability enabled in Xcode project setting
 - **Source**: HealthKit sleep analysis
 - **Unit**: TimeInterval (seconds)
 - **Mock Range**: 6.5 - 9.5 hours
+
+## 🎯 MockDataWithInjectionProvider Details
+
+The Staging environment uses a revolutionary approach for realistic HealthKit testing:
+
+### Data Injection Process
+1. **Permission Request**: Requests both read and write HealthKit permissions
+2. **Data Clearing**: Gracefully clears existing test data (ignores errors if no data exists)
+3. **7-Day Injection**: Writes realistic health metrics for the past 7 days
+4. **Real Queries**: Uses actual HealthKitDataProvider to fetch the injected data
+
+### Generated Mock Data Patterns
+
+| Metric | Day 1 | Day 2 | Day 3 | Day 7 | Pattern |
+|--------|--------|--------|--------|--------|---------|
+| **Steps** | 12,000 | 11,200 | 10,400 | 8,800 | Decreasing with variation |
+| **VO₂Max** | 42.0 | 42.3 | 42.6 | 43.8 | Gradual improvement |
+| **Resting HR** | 65.0 | 64.5 | 64.0 | 62.5 | Slight improvement |
+| **HRV** | 45.0 | 46.5 | 48.0 | 54.0 | Improving trend |
+| **Sleep** | 7.5h | 8.0h | 7.5h | 8.5h | Weekend variations |
+
+### Benefits for Testing
+- **Realistic Data Patterns**: Natural variations and trends
+- **End-to-End Validation**: Tests complete HealthKit permission and data flow
+- **Consistent Results**: Same data set for every test run
+- **Production Parity**: Uses exact same HealthKit APIs as production
+- **Error Handling**: Tests real HealthKit error scenarios
 
 ## 🚨 Error Handling
 

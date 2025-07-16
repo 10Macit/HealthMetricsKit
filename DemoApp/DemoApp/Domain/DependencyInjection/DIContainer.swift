@@ -10,12 +10,22 @@ public final class DIContainer: ObservableObject {
     /// Application configuration based on schemes
     public enum Configuration {
         case development
+        case staging
         case production
         
         /// Current configuration based on environment variables
         static var current: Configuration {
             if let envConfig = ProcessInfo.processInfo.environment["APP_CONFIGURATION"] {
-                return envConfig == "Development" ? .development : .production
+                switch envConfig {
+                case "Development":
+                    return .development
+                case "Staging":
+                    return .staging
+                case "Production":
+                    return .production
+                default:
+                    return .development
+                }
             }
             
             // Fallback to build configuration
@@ -36,6 +46,8 @@ public final class DIContainer: ObservableObject {
         switch Configuration.current {
         case .development:
             provider = MockHealthDataProvider()
+        case .staging:
+            provider = MockDataWithInjectionProvider()
         case .production:
             provider = HealthKitDataProvider()
         }
@@ -86,7 +98,18 @@ public final class DIContainer: ObservableObject {
         invalidateUseCases()
     }
     
-    /// Configures the container to use mock data
+    /// Configures the container to use mock data with HealthKit injection
+    /// Perfect for staging environment - tests real HealthKit flow with controlled data
+    public func configureForStaging() {
+        healthMetricsRepository = DefaultHealthMetricsRepository(
+            healthDataProvider: MockDataWithInjectionProvider()
+        )
+        
+        // Recreate use cases with new repository
+        invalidateUseCases()
+    }
+    
+    /// Configures the container to use pure mock data
     /// Useful for testing and development
     public func configureForTesting() {
         healthMetricsRepository = DefaultHealthMetricsRepository(
