@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 import HealthMetricKits
 
 /// Testable Health Dashboard View that accepts an injected ViewModel
@@ -47,6 +48,11 @@ struct HealthDashboardView: View {
         }
         .task {
             await viewModel.fetchHealthMetrics()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .healthKitPermissionsGranted)) { _ in
+            Task {
+                await viewModel.fetchHealthMetrics()
+            }
         }
     }
     

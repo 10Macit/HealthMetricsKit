@@ -45,11 +45,12 @@ public final class HealthKitDataProvider: HealthDataProvider {
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
         
-        let steps = try await fetchSteps(from: startOfDay, to: endOfDay)
-        let hrv = try await fetchHeartRateVariability(from: startOfDay, to: endOfDay)
-        let rhr = try await fetchRestingHeartRate(from: startOfDay, to: endOfDay)
-        let vo2Max = try await fetchVO2Max(from: startOfDay, to: endOfDay)
-        let sleepDuration = try await fetchSleepDuration(from: startOfDay, to: endOfDay)
+        // Fetch each metric safely - if one fails, continue with others
+        let steps = await safelyFetch { try await self.fetchSteps(from: startOfDay, to: endOfDay) }
+        let hrv = await safelyFetch { try await self.fetchHeartRateVariability(from: startOfDay, to: endOfDay) }
+        let rhr = await safelyFetch { try await self.fetchRestingHeartRate(from: startOfDay, to: endOfDay) }
+        let vo2Max = await safelyFetch { try await self.fetchVO2Max(from: startOfDay, to: endOfDay) }
+        let sleepDuration = await safelyFetch { try await self.fetchSleepDuration(from: startOfDay, to: endOfDay) }
         
         return HealthMetrics(
             steps: steps,
@@ -62,6 +63,18 @@ public final class HealthKitDataProvider: HealthDataProvider {
     }
     
     // MARK: - Private Methods
+    
+    /// Safely executes a fetch operation, returning nil if it fails
+    /// This allows partial data to be returned instead of failing the entire fetch
+    private func safelyFetch<T>(_ operation: @escaping () async throws -> T?) async -> T? {
+        do {
+            return try await operation()
+        } catch {
+            // Log the error for debugging but don't fail the entire fetch
+            print("HealthKit fetch failed: \(error.localizedDescription)")
+            return nil
+        }
+    }
     
     private func fetchSteps(from startDate: Date, to endDate: Date) async throws -> Int? {
         guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return nil }

@@ -5,12 +5,41 @@ import HealthMetricKits
 /// Follows the Service Locator pattern for dependency management
 public final class DIContainer: ObservableObject {
     
+    // MARK: - Configuration
+    
+    /// Application configuration based on schemes
+    public enum Configuration {
+        case development
+        case production
+        
+        /// Current configuration based on environment variables
+        static var current: Configuration {
+            if let envConfig = ProcessInfo.processInfo.environment["APP_CONFIGURATION"] {
+                return envConfig == "Development" ? .development : .production
+            }
+            
+            // Fallback to build configuration
+            #if DEBUG
+            return .development
+            #else
+            return .production
+            #endif
+        }
+    }
+    
     // MARK: - Singleton
     public static let shared = DIContainer()
     
     // MARK: - Dependencies
     private lazy var healthMetricsRepository: HealthMetricsRepository = {
-        DefaultHealthMetricsRepository(healthDataProvider: MockHealthDataProvider())
+        let provider: HealthDataProvider
+        switch Configuration.current {
+        case .development:
+            provider = MockHealthDataProvider()
+        case .production:
+            provider = HealthKitDataProvider()
+        }
+        return DefaultHealthMetricsRepository(healthDataProvider: provider)
     }()
     
     private lazy var fetchHealthMetricsUseCase: FetchHealthMetricsUseCaseProtocol = {
@@ -37,6 +66,11 @@ public final class DIContainer: ObservableObject {
             requestPermissionsUseCase: requestPermissionsUseCase,
             validateHealthMetricsUseCase: validateHealthMetricsUseCase
         )
+    }
+    
+    /// Returns the RequestPermissionsUseCase for external use
+    public func getRequestPermissionsUseCase() -> RequestPermissionsUseCaseProtocol {
+        return requestPermissionsUseCase
     }
     
     // MARK: - Configuration Methods

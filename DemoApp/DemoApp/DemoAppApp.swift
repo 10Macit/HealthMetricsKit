@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HealthMetricKits
 
 @main
 struct DemoAppApp: App {
@@ -26,12 +27,28 @@ struct DemoAppApp: App {
     // MARK: - Configuration
     
     private func setupDependencies() {
-        // Configure for development with mock data
-        // In a real app, you might check for debug/release builds
-        #if DEBUG
-        viewModelFactory.configureForTesting()
-        #else
-        viewModelFactory.configureForProduction()
-        #endif
+        switch DIContainer.Configuration.current {
+        case .development:
+            viewModelFactory.configureForTesting()
+        case .production:
+            viewModelFactory.configureForProduction()
+            Task {
+                await requestHealthKitPermissions()
+            }
+        }
+    }
+    
+    /// Requests HealthKit permissions for production builds
+    @MainActor
+    private func requestHealthKitPermissions() async {
+        do {
+            let permissionsUseCase = DIContainer.shared.getRequestPermissionsUseCase()
+            try await permissionsUseCase.execute()
+            
+            // Notify that permissions were granted successfully
+            NotificationCenter.default.post(name: .healthKitPermissionsGranted, object: nil)
+        } catch {
+            print("Failed to request HealthKit permissions: \(error)")
+        }
     }
 }
