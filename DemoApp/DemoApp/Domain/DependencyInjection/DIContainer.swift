@@ -9,28 +9,28 @@ public final class DIContainer: ObservableObject {
     
     /// Application configuration based on schemes
     public enum Configuration {
-        case development
-        case staging
+        case test
+        case dev
         case production
         
         /// Current configuration based on environment variables
         static var current: Configuration {
             if let envConfig = ProcessInfo.processInfo.environment["APP_CONFIGURATION"] {
                 switch envConfig {
-                case "Development":
-                    return .development
-                case "Staging":
-                    return .staging
+                case "Test":
+                    return .test
+                case "Dev":
+                    return .dev
                 case "Production":
                     return .production
                 default:
-                    return .development
+                    return .test
                 }
             }
             
             // Fallback to build configuration
             #if DEBUG
-            return .development
+            return .test
             #else
             return .production
             #endif
@@ -44,9 +44,9 @@ public final class DIContainer: ObservableObject {
     private lazy var healthMetricsRepository: HealthMetricsRepository = {
         let provider: HealthDataProvider
         switch Configuration.current {
-        case .development:
+        case .test:
             provider = MockHealthDataProvider()
-        case .staging:
+        case .dev:
             provider = MockDataWithInjectionProvider()
         case .production:
             provider = HealthKitDataProvider()
@@ -99,8 +99,8 @@ public final class DIContainer: ObservableObject {
     }
     
     /// Configures the container to use mock data with HealthKit injection
-    /// Perfect for staging environment - tests real HealthKit flow with controlled data
-    public func configureForStaging() {
+    /// Perfect for dev environment - tests real HealthKit flow with controlled data
+    public func configureForDev() {
         healthMetricsRepository = DefaultHealthMetricsRepository(
             healthDataProvider: MockDataWithInjectionProvider()
         )
@@ -110,7 +110,7 @@ public final class DIContainer: ObservableObject {
     }
     
     /// Configures the container to use pure mock data
-    /// Useful for testing and development
+    /// Useful for testing and unit tests
     public func configureForTesting() {
         healthMetricsRepository = DefaultHealthMetricsRepository(
             healthDataProvider: MockHealthDataProvider()

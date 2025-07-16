@@ -36,11 +36,15 @@ dependencies: [
 ```swift
 import HealthMetricKits
 
-// Use mock data for development/testing
+// Use mock data for testing
 let mockProvider = MockHealthDataProvider()
+
+// Use mock HealthKit data for development
+let healthKitProvider = MockDataWithInjectionProvider()
 
 // Use real HealthKit data for production
 let healthKitProvider = HealthKitDataProvider()
+
 
 // Fetch today's metrics
 do {
@@ -69,6 +73,7 @@ Sources/HealthMetricKits/
 ├── Implementations/
 │   ├── HealthKitDataProvider.swift # Live HealthKit implementation
 │   └── MockHealthDataProvider.swift # Mock data provider
+│   └── MockDataWithInjectionProvider.swift # Mock data injection provider
 ├── Extensions/
 │   └── HealthMetrics+Extensions.swift # Convenience extensions
 └── Utilities/

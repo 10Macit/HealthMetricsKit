@@ -26,8 +26,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:DemoApp-Test.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -52,7 +57,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "APP_CONFIGURATION"
-            value = "Staging"
+            value = "Test"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -76,7 +81,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "APP_CONFIGURATION"
-            value = "Staging"
+            value = "Test"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

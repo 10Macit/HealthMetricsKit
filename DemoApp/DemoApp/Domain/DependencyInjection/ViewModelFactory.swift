@@ -25,10 +25,10 @@ public final class ViewModelFactory: ObservableObject {
         diContainer.configureForProduction()
     }
     
-    /// Configures the factory for staging environment
+    /// Configures the factory for dev environment
     /// Uses MockDataWithInjectionProvider for realistic HealthKit testing
-    public func configureForStaging() {
-        diContainer.configureForStaging()
+    public func configureForDev() {
+        diContainer.configureForDev()
     }
     
     /// Configures the factory for testing environment

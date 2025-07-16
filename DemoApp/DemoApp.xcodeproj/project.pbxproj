@@ -38,6 +38,7 @@
 		738689C92E27F43400C76201 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		738689D62E27F43500C76201 /* DemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		738689E02E27F43500C76201 /* DemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73868BF32E2863BB00C76201 /* DemoApp-Test.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "DemoApp-Test.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -94,6 +95,7 @@
 		738689C02E27F43400C76201 = {
 			isa = PBXGroup;
 			children = (
+				73868BF32E2863BB00C76201 /* DemoApp-Test.xctestplan */,
 				738689CB2E27F43400C76201 /* DemoApp */,
 				738689D92E27F43500C76201 /* DemoAppTests */,
 				738689E32E27F43500C76201 /* DemoAppUITests */,

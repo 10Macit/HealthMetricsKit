@@ -28,10 +28,10 @@ struct DemoAppApp: App {
     
     private func setupDependencies() {
         switch DIContainer.Configuration.current {
-        case .development:
+        case .test:
             viewModelFactory.configureForTesting()
-        case .staging:
-            viewModelFactory.configureForStaging()
+        case .dev:
+            viewModelFactory.configureForDev()
             Task {
                 await requestHealthKitPermissions()
             }
