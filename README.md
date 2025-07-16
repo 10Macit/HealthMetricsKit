@@ -232,17 +232,17 @@ class NavigationCoordinator: ObservableObject {
 
 ## 🚀 Recent Improvements
 
-### Version 3.0 - Scheme-Based Configuration & Enhanced Testing
+### Latest Updates - Scheme-Based Configuration & Enhanced Testing
 
 **🎯 Three-Environment Architecture**
-- **Development**: Pure mock data with `MockHealthDataProvider` - no HealthKit dependencies
-- **Staging**: Realistic testing with `MockDataWithInjectionProvider` - injects controlled data into HealthKit for end-to-end testing
+- **Test**: Pure mock data with `MockHealthDataProvider` - no HealthKit dependencies
+- **Dev**: Realistic testing with `MockDataWithInjectionProvider` - injects controlled data into HealthKit for end-to-end testing
 - **Production**: Real user data with `HealthKitDataProvider` - live HealthKit integration
 
 **🔧 Scheme-Based Configuration**
 - Automatic environment detection via `APP_CONFIGURATION` environment variables
-- `DemoApp-Development.xcscheme`: Uses MockHealthDataProvider for rapid development
-- `DemoApp-Staging.xcscheme`: Uses MockDataWithInjectionProvider for realistic HealthKit testing
+- `DemoApp-Test.xcscheme`: Uses MockHealthDataProvider for rapid development
+- `DemoApp-Dev.xcscheme`: Uses MockDataWithInjectionProvider for realistic HealthKit testing
 - `DemoApp-Production.xcscheme`: Uses HealthKitDataProvider for production deployment
 - Centralized configuration in `DIContainer` with automatic provider selection
 
@@ -272,7 +272,7 @@ class NavigationCoordinator: ObservableObject {
 - **Testing Support**: Easy switching between environments for different testing scenarios
 - **Production Ready**: Seamless deployment with proper HealthKit integration
 
-### Version 2.0 - Enhanced Architecture
+### Enhanced Architecture Updates
 
 **🏗️ Advanced Dependency Injection**
 - Centralized `DIContainer` for all app dependencies
@@ -366,7 +366,7 @@ The demo app includes comprehensive tests for:
 ⌘ + U
 
 # Run specific test classes
-xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Development -destination 'platform=iOS Simulator,name=iPhone 16' test -only-testing HealthDashboardViewModelTests
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Test -destination 'platform=iOS Simulator,name=iPhone 16' test -only-testing HealthDashboardViewModelTests
 ```
 
 ### Environment-Specific Testing
@@ -374,17 +374,17 @@ xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Development -destination '
 Test different configurations using the scheme-based system:
 
 ```bash
-# Test with Development environment (MockHealthDataProvider)
-xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Development -destination 'platform=iOS Simulator,name=iPhone 16' build
+# Test with Test environment (MockHealthDataProvider)
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Test -destination 'platform=iOS Simulator,name=iPhone 16' build
 
-# Test with Staging environment (MockDataWithInjectionProvider)
-xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Staging -destination 'platform=iOS Simulator,name=iPhone 16' build
+# Test with Dev environment (MockDataWithInjectionProvider)
+xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Dev -destination 'platform=iOS Simulator,name=iPhone 16' build
 
 # Test with Production environment (HealthKitDataProvider)
 xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Production -destination 'platform=iOS Simulator,name=iPhone 16' build
 ```
 
-**Console Output for Staging Environment:**
+**Console Output for Dev Environment:**
 ```
 🔄 MockDataWithInjectionProvider: Starting data injection...
 ℹ️ No existing HKQuantityTypeIdentifierStepCount data to clear (this is normal)
@@ -423,19 +423,19 @@ xcodebuild -project DemoApp.xcodeproj -scheme DemoApp-Production -destination 'p
 
 The app supports three distinct environments controlled by Xcode schemes:
 
-#### Development Environment
+#### Test Environment
 - **Purpose**: Rapid development with no HealthKit dependencies
 - **Data Provider**: `MockHealthDataProvider`
 - **Usage**: Day-to-day development, unit testing, and demos
-- **Scheme**: `DemoApp-Development`
-- **Environment Variable**: `APP_CONFIGURATION=Development`
+- **Scheme**: `DemoApp-Test`
+- **Environment Variable**: `APP_CONFIGURATION=Test`
 
-#### Staging Environment
+#### Dev Environment
 - **Purpose**: Realistic HealthKit testing with controlled data
 - **Data Provider**: `MockDataWithInjectionProvider`
 - **Usage**: End-to-end testing, QA validation, and realistic demos
-- **Scheme**: `DemoApp-Staging`
-- **Environment Variable**: `APP_CONFIGURATION=Staging`
+- **Scheme**: `DemoApp-Dev`
+- **Environment Variable**: `APP_CONFIGURATION=Dev`
 - **Special Features**: Automatically injects 7 days of realistic mock data into HealthKit
 
 #### Production Environment
@@ -467,9 +467,9 @@ The app automatically detects the current environment and configures dependencie
 ```swift
 // DIContainer automatically selects the appropriate provider
 switch Configuration.current {
-case .development:
+case .test:
     provider = MockHealthDataProvider()        // Pure mock data
-case .staging:
+case .dev:
     provider = MockDataWithInjectionProvider() // HealthKit injection
 case .production:
     provider = HealthKitDataProvider()         // Real user data
@@ -486,13 +486,13 @@ case .production:
 
 ### Why Three Data Providers?
 
-**MockHealthDataProvider (Development)**
+**MockHealthDataProvider (Test)**
 - **Consistent Development**: Same data across team members and CI/CD
 - **Demo Ready**: Perfect for app store screenshots and demos
 - **Offline Testing**: No need for real health data during development
 - **Fast Iteration**: No HealthKit dependencies or permission prompts
 
-**MockDataWithInjectionProvider (Staging)**
+**MockDataWithInjectionProvider (Dev)**
 - **Realistic Testing**: Tests complete HealthKit integration flow with controlled data
 - **End-to-End Validation**: Validates permission flow, data writing, and reading
 - **Predictable Results**: Same test data every time for consistent testing
@@ -542,7 +542,7 @@ case .production:
 
 ## 🎯 MockDataWithInjectionProvider Details
 
-The Staging environment uses a revolutionary approach for realistic HealthKit testing:
+The Dev environment uses a revolutionary approach for realistic HealthKit testing:
 
 ### Data Injection Process
 1. **Permission Request**: Requests both read and write HealthKit permissions
