@@ -1,0 +1,15 @@
+{
+  "originHash" : "566af442502b47f5ce8c17992c0fdf262c840426f791ad38a77d1bb76784364c",
+  "pins" : [
+    {
+      "identity" : "healthmetricskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/10Macit/HealthMetricsKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5882fca502c6ffc596547715b336787e4aee444b"
+      }
+    }
+  ],
+  "version" : 3
+}
