@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		73868C492E28667B00C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868C482E28667B00C76201 /* HealthMetricsKit */; };
-		73868C4C2E2866E700C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868C4B2E2866E700C76201 /* HealthMetricsKit */; };
-		73868C652E28692A00C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868C642E28692A00C76201 /* HealthMetricsKit */; };
+		73868D492E293E6500C76201 /* HealthMetricsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 73868D482E293E6500C76201 /* HealthMetricsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,9 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73868C492E28667B00C76201 /* HealthMetricsKit in Frameworks */,
-				73868C4C2E2866E700C76201 /* HealthMetricsKit in Frameworks */,
-				73868C652E28692A00C76201 /* HealthMetricsKit in Frameworks */,
+				73868D492E293E6500C76201 /* HealthMetricsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +132,7 @@
 				73868B532E285C6400C76201 /* HealthMetricKits */,
 				73868C482E28667B00C76201 /* HealthMetricsKit */,
 				73868C4B2E2866E700C76201 /* HealthMetricsKit */,
-				73868C642E28692A00C76201 /* HealthMetricsKit */,
+				73868D482E293E6500C76201 /* HealthMetricsKit */,
 			);
 			productName = DemoApp;
 			productReference = 738689C92E27F43400C76201 /* DemoApp.app */;
@@ -221,7 +217,7 @@
 			mainGroup = 738689C02E27F43400C76201;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				73868C632E28692900C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */,
+				73868D472E293E6500C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 738689CA2E27F43400C76201 /* Products */;
@@ -594,12 +590,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		73868C632E28692900C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */ = {
+		73868D472E293E6500C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/10Macit/HealthMetricsKit";
 			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -625,9 +621,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = HealthMetricsKit;
 		};
-		73868C642E28692A00C76201 /* HealthMetricsKit */ = {
+		73868D482E293E6500C76201 /* HealthMetricsKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 73868C632E28692900C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */;
+			package = 73868D472E293E6500C76201 /* XCRemoteSwiftPackageReference "HealthMetricsKit" */;
 			productName = HealthMetricsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
