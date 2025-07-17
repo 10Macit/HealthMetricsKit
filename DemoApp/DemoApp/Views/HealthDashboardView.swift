@@ -21,8 +21,7 @@ struct HealthDashboardView: View {
                     headerSection
                     
                     if viewModel.isLoading {
-                        LoadingView()
-                            .frame(maxWidth: .infinity, minHeight: 200)
+                        skeletonHealthMetricsGrid
                     } else if let errorMessage = viewModel.errorMessage {
                         ErrorView(message: errorMessage) {
                             await viewModel.retryFetch()
@@ -128,6 +127,51 @@ struct HealthDashboardView: View {
                 color: .indigo
             )
         }
+    }
+    
+    private var skeletonHealthMetricsGrid: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+            HealthMetricCard(
+                title: "Steps",
+                value: "12,345",
+                unit: "steps",
+                icon: "figure.walk",
+                color: .blue
+            )
+            
+            HealthMetricCard(
+                title: "Resting Heart Rate",
+                value: "68",
+                unit: "bpm",
+                icon: "heart.fill",
+                color: .red
+            )
+            
+            HealthMetricCard(
+                title: "Heart Rate Variability",
+                value: "45.2",
+                unit: "ms",
+                icon: "waveform.path.ecg",
+                color: .green
+            )
+            
+            HealthMetricCard(
+                title: "VO₂ Max",
+                value: "42.8",
+                unit: "ml/kg/min",
+                icon: "lungs.fill",
+                color: .purple
+            )
+            
+            HealthMetricCard(
+                title: "Sleep Duration",
+                value: "7h 30m",
+                unit: "",
+                icon: "bed.double.fill",
+                color: .indigo
+            )
+        }
+        .redacted(reason: .placeholder)
     }
     
     private var validationWarningsSection: some View {

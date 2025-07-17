@@ -48,6 +48,9 @@ public final class HealthDashboardViewModel: ObservableObject {
         errorMessage = nil
         validationResult = nil
         
+        // Start timing for minimum loading duration
+        let startTime = Date()
+        
         do {
             // Use the fetch use case instead of direct repository access
             let metrics = try await fetchHealthMetricsUseCase.execute(for: date)
@@ -65,6 +68,15 @@ public final class HealthDashboardViewModel: ObservableObject {
             errorMessage = error.localizedDescription
             healthMetrics = nil
             validationResult = nil
+        }
+        
+        // Ensure minimum loading duration for smooth skeleton effect
+        let elapsedTime = Date().timeIntervalSince(startTime)
+        let minimumLoadingDuration: TimeInterval = 0.8 // 800ms
+        
+        if elapsedTime < minimumLoadingDuration {
+            let remainingTime = minimumLoadingDuration - elapsedTime
+            try? await Task.sleep(nanoseconds: UInt64(remainingTime * 1_000_000_000))
         }
         
         isLoading = false
